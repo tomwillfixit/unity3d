@@ -19,6 +19,13 @@ RUN dpkg -i ${PACKAGE} || apt-get -f install -y
 #Install unity3d
 RUN dpkg -i ${PACKAGE}
 
+# Add the gamedev user
+RUN useradd -ms /bin/bash gamedev && \
+    chmod 0660 /etc/sudoers && \
+    echo "gamedev ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    chmod 0440 /etc/sudoers
+
+# this is a requirement by chrome-sandbox
 RUN chown root /opt/Unity/Editor/chrome-sandbox 
 RUN chmod 4755 /opt/Unity/Editor/chrome-sandbox
 
@@ -31,6 +38,7 @@ ADD  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /
 RUN mkdir -p /usr/share/icons/hicolor && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
+  fonts-liberation \
 	gconf-service \
 	hicolor-icon-theme \
 	libappindicator1 \
@@ -53,7 +61,10 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	dpkg -i '/src/google-chrome-stable_current_amd64.deb' && \
 	rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /root/.local/share/unity3d/Unity
-RUN chmod 777 /root/.local/share/unity3d/Unity
+#RUN mkdir -p /home/gamedev/
+#RUN chown -R gamedev:gamedev /home/gamedev/.local/
 
-ENTRYPOINT sudo /opt/Unity/Editor/Unity
+USER gamedev
+WORKDIR /home/gamedev
+ENV DISPLAY=:0
+ENTRYPOINT ["sudo", "/opt/Unity/Editor/Unity"]
