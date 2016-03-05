@@ -61,9 +61,6 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	dpkg -i '/src/google-chrome-stable_current_amd64.deb' && \
 	rm -rf /var/lib/apt/lists/*
 
-#RUN mkdir -p /home/gamedev/
-#RUN chown -R gamedev:gamedev /home/gamedev/.local/
-
 USER gamedev
 WORKDIR /home/gamedev
 ENV DISPLAY=:0
