@@ -4,7 +4,7 @@ PKG := unity-editor-5.1.0f3+2015082501_amd64.deb
 URL := http://download.unity3d.com/download_unity/$(PKG)
 
 clean:
-	rm -i $(PKG)
+	([[ -e $(PKG) ]] && rm -i $(PKG)) || true
 
 download:
 	@([[ -e $(PKG) ]] && echo "Already downloaded: $(PKG)") || \
