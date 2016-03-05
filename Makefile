@@ -14,7 +14,7 @@ build:
 	docker build -t unity3d:experimental .
 	# delete the license file, since the authorised machine's signature
 	#+ changed (if this is a re-build).
-  @rm -rf gamedevhome/.local/share/unity3d/Unity/Unity_v5.x.ulf
+	@rm -rf gamedevhome/.local/share/unity3d/Unity/Unity_v5.x.ulf
 
 run:
 	@mkdir -p gamedevhome/.local/share/unity3d/Unity

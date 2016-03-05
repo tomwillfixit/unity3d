@@ -5,6 +5,7 @@
     - [Download](#download)
     - [Build](#build)
     - [Run](#run)
+- [Importing assets](#importing-assets)
 
 <!-- markdown-toc end -->
 
@@ -33,3 +34,15 @@ Build the Docker image with
 Run Unity3D with Docker with
 
     make run
+
+# Importing assets
+
+Create an asset directory in `gamedev`'s home directory, if you haven't already done so:
+
+    mkdir gamedevhome/assets
+
+Copy the downloaded asset there:
+
+    cp ~/Downloads/LeapMotion_CoreAsset_Orion_Beta_4.0.1.unitypackage gamedevhome/assets
+
+Now, in Unity3D, import the asset from `/home/gamedev/assets`
