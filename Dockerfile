@@ -1,16 +1,16 @@
-#Links : 
+#Links :
 #http://download.unity3d.com/download_unity/unity-editor-installer-5.1.0f3+2015082501.sh
 #http://blogs.unity3d.com/2015/08/26/unity-comes-to-linux-experimental-build-now-available/
 
-FROM ubuntu:14.04 
+FROM ubuntu:14.04
 
 MAINTAINER thshaw
 
-ENV PACKAGE=unity-editor-5.1.0f3+2015082501_amd64.deb 
+ENV PACKAGE=unity-editor-5.1.0f3+2015082501_amd64.deb
 
 RUN apt-get update
 
-WORKDIR unity3d 
+WORKDIR unity3d
 ADD ${PACKAGE} ${PACKAGE}
 
 #Resolve missing dependencies
@@ -26,7 +26,7 @@ RUN useradd -ms /bin/bash gamedev && \
     chmod 0440 /etc/sudoers
 
 # this is a requirement by chrome-sandbox
-RUN chown root /opt/Unity/Editor/chrome-sandbox 
+RUN chown root /opt/Unity/Editor/chrome-sandbox
 RUN chmod 4755 /opt/Unity/Editor/chrome-sandbox
 
 RUN apt-get clean
@@ -55,6 +55,8 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	libv4l-0 \
 	libxss1 \
 	libxtst6 \
+  mono-complete \
+  monodevelop \
 	wget \
 	xdg-utils \
 	--no-install-recommends && \
