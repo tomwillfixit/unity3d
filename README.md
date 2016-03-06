@@ -10,6 +10,7 @@
 <!-- markdown-toc end -->
 
 # Unity3D in Docker
+This is [Unity3D for Linux](http://blogs.unity3d.com/2015/08/26/unity-comes-to-linux-experimental-build-now-available/) run with [Docker](https://www.docker.com/).
 
 _TL;DR if this is your first time running this, simply run_
 
@@ -19,7 +20,7 @@ Otherwise, the steps can be run individually.
 
 ## Download
 
-Download the experimental Unity3D Linux build (as [introduced here](http://blogs.unity3d.com/2015/08/26/unity-comes-to-linux-experimental-build-now-available/)) with
+Download the latest Unity3D Linux build from the [release notes](http://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/#post-2429209) with
 
     make download
 
