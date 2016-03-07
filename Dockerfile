@@ -6,7 +6,8 @@ FROM ubuntu:14.04
 
 MAINTAINER thshaw
 
-ENV PACKAGE=unity-editor-5.1.0f3+2015082501_amd64.deb
+ARG PACKAGE
+ARG VIDEO_GID
 
 RUN apt-get update
 
@@ -23,7 +24,10 @@ RUN dpkg -i ${PACKAGE}
 RUN useradd -ms /bin/bash gamedev && \
     chmod 0660 /etc/sudoers && \
     echo "gamedev ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-    chmod 0440 /etc/sudoers
+    chmod 0440 /etc/sudoers && \
+    usermod -aG video gamedev && \
+    groupadd -g ${VIDEO_GID} unity3ddockervideo && \
+    usermod -aG unity3ddockervideo gamedev
 
 # this is a requirement by chrome-sandbox
 RUN chown root /opt/Unity/Editor/chrome-sandbox
@@ -45,6 +49,7 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	libasound2 \
 	libcanberra-gtk-module \
 	libcurl3 \
+  libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 \
 	libexif-dev \
 	libgconf-2-4 \
 	libgl1-mesa-dri \
@@ -53,6 +58,9 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	libnss3 \
 	libpango1.0-0 \
 	libv4l-0 \
+  libxcb1 \
+  libxcb-render0 \
+  libxcb-shm0 \
 	libxss1 \
 	libxtst6 \
   mono-complete \
