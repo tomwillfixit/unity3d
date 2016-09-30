@@ -26,7 +26,8 @@ RUN useradd -ms /bin/bash gamedev && \
     echo "gamedev ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     chmod 0440 /etc/sudoers && \
     usermod -aG video gamedev && \
-    groupadd -g ${VIDEO_GID} unity3ddockervideo && \
+    #groupadd -g ${VIDEO_GID} unity3ddockervideo && \
+    groupadd unity3ddockervideo && \
     usermod -aG unity3ddockervideo gamedev
 
 # this is a requirement by chrome-sandbox
@@ -42,14 +43,14 @@ ADD  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /
 RUN mkdir -p /usr/share/icons/hicolor && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
-  fonts-liberation \
+  	fonts-liberation \
 	gconf-service \
 	hicolor-icon-theme \
 	libappindicator1 \
 	libasound2 \
 	libcanberra-gtk-module \
 	libcurl3 \
-  libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 \
+  	libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 \
 	libexif-dev \
 	libgconf-2-4 \
 	libgl1-mesa-dri \
@@ -58,13 +59,13 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	libnss3 \
 	libpango1.0-0 \
 	libv4l-0 \
-  libxcb1 \
-  libxcb-render0 \
-  libxcb-shm0 \
+  	libxcb1 \
+  	libxcb-render0 \
+  	libxcb-shm0 \
 	libxss1 \
 	libxtst6 \
-  mono-complete \
-  monodevelop \
+  	mono-complete \
+  	monodevelop \
 	wget \
 	xdg-utils \
 	--no-install-recommends && \

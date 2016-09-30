@@ -14,6 +14,7 @@ This is [Unity3D for Linux](http://blogs.unity3d.com/2015/08/26/unity-comes-to-l
 
 _TL;DR if this is your first time running this, simply run_
 
+    xhost +
     make all
 
 Otherwise, the steps can be run individually.
