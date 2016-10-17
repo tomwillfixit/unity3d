@@ -34,11 +34,12 @@ run:
 	@mkdir -p gamedevhome/.cache/unity3d
 	@mkdir -p gamedevhome/.config/unity3d/Preferences
 	docker run --rm -it --privileged --net host \
-		--device=/dev/dri:/dev/dri \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v $(PWD)/gamedevhome:/home/gamedev \
-		--name unity3d \
-		unity3d:$(DOCKER_TAG) \
+		--device=/dev/dri:/dev/dri 								\
+		-e "PULSE_SERVER=$(PULSE_SERVER)"         \
+		-v /tmp/.X11-unix:/tmp/.X11-unix 					\
+		-v $(PWD)/gamedevhome:/home/gamedev 			\
+		--name unity3d 														\
+		unity3d:$(DOCKER_TAG) 										\
 		-logFile /proc/1/fd/0
 
 all: clean download build run

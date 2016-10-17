@@ -72,6 +72,11 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	dpkg -i '/src/google-chrome-stable_current_amd64.deb' && \
 	rm -rf /var/lib/apt/lists/*
 
+# add audio support
+RUN add-apt-repository -y ppa:mc3man/trusty-media
+RUN apt-get update
+RUN apt-get install -y ffmpeg
+
 USER gamedev
 WORKDIR /home/gamedev
 ENV DISPLAY=:0
