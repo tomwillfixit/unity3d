@@ -37,6 +37,12 @@ Run Unity3D with Docker with
 
     make run
 
+## Pulseaudio
+
+Before running the docker, run `paprefs` and enable 'Network Server > Enable Network Access to other devices' to be able to get pulseaudio to work. And run this (or put in ~/.bashrc):
+
+    export PULSE_SERVER=$(pax11publish | sed 's/.*tcp:/tcp:/g;s/ .*//g' | head -n1)
+
 # Importing assets
 
 Create an asset directory in `gamedev`'s home directory, if you haven't already done so:
